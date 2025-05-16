@@ -1,0 +1,10 @@
+casa
+livro
+computador
+árvore
+gato
+montanha
+sol
+carro
+música
+chocolate

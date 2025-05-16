@@ -1,0 +1,3 @@
+Numero = 70
+Quantidade divisores = 4
+Divisores: 1 5 7 35 
