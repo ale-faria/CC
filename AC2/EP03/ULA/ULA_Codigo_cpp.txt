@@ -1,0 +1,71 @@
+// Definição dos pinos dos LEDs
+int ledVermelho = 13; // Representa a
+int ledAmarelo = 12;  // Representa b
+int ledVerde = 11;    // Representa saída da ULA
+int ledAzul = 10;     // Representa vai1 (carry)
+
+// Variáveis para armazenar os valores de entrada
+int a, b, opCode;
+int saida, vai1;
+
+void setup() {
+    // Configuração dos pinos como saída
+    pinMode(ledVermelho, OUTPUT);
+    pinMode(ledAmarelo, OUTPUT);
+    pinMode(ledVerde, OUTPUT);
+    pinMode(ledAzul, OUTPUT);
+
+    // Inicializa a comunicação serial
+    Serial.begin(9600);
+}
+
+void loop() {
+    // Verifica se há dados disponíveis na comunicação serial
+    if (Serial.available() >= 3) {
+        // Lê os três caracteres enviados
+        a = Serial.read() - '0';     // Converte de ASCII para inteiro
+        b = Serial.read() - '0';
+        opCode = Serial.read() - '0';
+
+        // Realiza a operação correspondente
+        switch (opCode) {
+            case 0: // AND (a & b)
+                saida = a & b;
+                vai1 = 0;
+                break;
+            case 1: // OR (a | b)
+                saida = a | b;
+                vai1 = 0;
+                break;
+            case 2: // NOT (a)
+                saida = !a;
+                vai1 = 0;
+                break;
+            case 3: // Soma (a + b) com carry
+                saida = (a + b) % 2; // Soma binária (bit menos significativo)
+                vai1 = (a + b) / 2;  // Carry (vai1)
+                break;
+            default: // Código inválido
+                return;
+        }
+
+        // Exibir os valores nos LEDs
+        digitalWrite(ledVermelho, a);
+        digitalWrite(ledAmarelo, b);
+        digitalWrite(ledVerde, saida);
+        digitalWrite(ledAzul, vai1);
+
+        // Exibir os resultados no monitor serial
+        Serial.print("Entrada: a = ");
+        Serial.print(a);
+        Serial.print(", b = ");
+        Serial.print(b);
+        Serial.print(", opCode = ");
+        Serial.println(opCode);
+
+        Serial.print("Saída: ");
+        Serial.print(saida);
+        Serial.print(", Vai1: ");
+        Serial.println(vai1);
+    }
+}
