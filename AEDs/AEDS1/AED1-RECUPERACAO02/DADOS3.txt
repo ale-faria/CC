@@ -1,0 +1,5 @@
+4
+SupermercadoA 101 4.50
+SupermercadoB 102 3.75
+SupermercadoC 103 5.25
+SupermercadoD 104 3.60

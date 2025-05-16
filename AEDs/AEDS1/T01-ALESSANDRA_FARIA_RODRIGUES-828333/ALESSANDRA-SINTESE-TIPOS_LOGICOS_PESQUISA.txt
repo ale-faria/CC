@@ -1,0 +1,135 @@
+﻿Síntese: os três tipos lógicos de pesquisa
+
+
+
+
+Alessandra Faria Rodrigues*
+
+
+
+
+RESUMO
+
+
+Esta síntese abordará os tipos lógicos de pesquisa, sendo eles: 
+pesquisa sem hipótese (descritiva), pesquisa com hipótese com relação de associação
+ e pesquisa com hipótese com relação de interferência. 
+Apontando as características e peculiaridades de cada tipo, e ressaltando a importância
+ de cada tipo de pesquisa. Esta síntese é baseada no vídeo de título “três tipos 
+lógicos de pesquisa” do Dr. Gilson Luiz Volpato, que está disponível para visualização
+ no YouTube.
+
+
+Palavras-chave: pesquisa científica; hipótese.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1 INTRODUÇÃO
+
+
+        A pesquisa científica sempre começa com uma pergunta, a partir dessa 
+pergunta é possível criar respostas, essas possíveis respostas são chamadas de hipótese. 
+Uma hipótese científica é uma suposição especulativa que é aceita de forma provisória 
+e serve como uma explicação inicial para um fenômeno observado. Ela é formulada com base 
+em dados existentes e conhecimentos prévios, e pode ser testada através da observação 
+e experimentação. Dentro desse contexto, vale ressaltar que nem toda pesquisa científica 
+apresenta a necessidade de se criar hipóteses, sendo assim, é possível analisar dois 
+tipos distintos de pesquisa: a pesquisa com hipótese e a pesquisa sem hipótese.
+
+
+
+
+2 DESENVOLVIMENTO
+        
+        Em primeira análise, evidencia-se a pesquisa onde não há a necessidade de 
+hipótese, também chamada de pesquisa descritiva. Nesse tipo de pesquisa a metodologia 
+é determinada pela pergunta, dessa forma, o foco geralmente está na coleta de dados e 
+na observação, sem uma previsão específica sobre o que será encontrado. Nesse método o 
+pesquisador busca entender melhor um determinado objeto de estudo ou fenômeno, sem ter 
+uma direção clara no início da pesquisa.
+        Já a pesquisa com hipótese testa a relação entre duas ou mais variáveis e pode 
+ser subdividida em dois tipos: relação por associação e relação por interferência. 
+A pesquisa por associação diz sobre correlações entre variáveis que se alteram 
+proporcionalmente, mas uma não interfere na outra. Um exemplo de associação é dizer que 
+“quanto mais filmes com o Nicolas Cage são lançados por ano, menos pessoas morrem em 
+acidentes de helicóptero”, ou seja, são dois dados estatísticos que estão sim 
+correlacionados, porém, um não influencia no outro.
+Por outro lado, a pesquisa por interferência diz sobre variáveis onde uma tem a 
+capacidade de influenciar a outra. Nesse tipo de relação há um mecanismo responsável por 
+causar certo efeito. Como exemplo, o consumo de cigarro sendo responsável por causar 
+infarto do miocárdio, nesse caso, a ação está diretamente influenciando no efeito. 
+
+
+
+
+3 CONSIDERAÇÕES FINAIS
+
+
+Diante dos tipos de pesquisa científica abordados, torna-se evidente a importância da 
+formulação de hipóteses como ponto de partida em muitos estudos. A hipótese direciona a 
+investigação e também fornece uma estrutura base para testar e validar ideias. No 
+entanto, é igualmente relevante reconhecer a importância da pesquisa sem hipótese, 
+onde a exploração do objeto de estudo é conduzida de forma mais livre. Assim, ambas as 
+abordagens contribuem de maneira distinta e significativa para o avanço do conhecimento 
+científico.
+
+
+
+
+
+
+
+
+
+
+REFERÊNCIAS
+
+
+VOLPATO, Gilson. AULA 20 de 42 - TRÊS TIPOS LÓGICOS DE PESQUISA. YouTube, 15 de março de 2012. Disponível em: https://youtu.be/XoTQo7fUf0s?si=AtJ5rrJLWg0w5vIS. Acesso em: 28 de março de 2024.
+
+
+O que é uma Hipótese. Enciclopédia significados. Disponível em: <https://www.significados.com.br/hipotese/>. Acesso em: 29 de março de 2024.
+
+FERREIRA, Vinicius. Nicolas Cage, big data e data science. HardFun, 2023. Disponível em: <https://www.hardfun.com.br/2023/12/nicolas-cage-big-data-e-data-science/#:~:text=Estat%C3%ADsticas%20mostram%20que%2C%20quanto%20mais,morrem%20em%20acidentes%20de%20helic%C3%B3ptero.>. Acesso em: 31 de março de 2024.
