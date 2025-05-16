@@ -1,0 +1,51 @@
+// Definição dos pinos dos LEDs
+int ledVermelho = 13; // LED vermelho (pare)
+int ledAmarelo = 12;  // LED amarelo (atenção)
+int ledVerde = 11;    // LED verde (siga)
+int ledAzul = 10;     // LED azul (piscando durante cada fase)
+
+void setup() {   
+    // Configuração dos pinos como saída
+    pinMode(ledVermelho, OUTPUT);
+    pinMode(ledAmarelo, OUTPUT);
+    pinMode(ledVerde, OUTPUT);
+    pinMode(ledAzul, OUTPUT);
+}
+
+void loop() {
+    // Acende o LED vermelho (pare)
+    digitalWrite(ledVermelho, HIGH);
+    // Pisca o LED azul 3 vezes (indicando tempo de espera no vermelho)
+    for(int i = 0; i < 3; i++){
+        digitalWrite(ledAzul, HIGH);
+        delay(1000);
+        digitalWrite(ledAzul, LOW);
+        delay(1000);
+    }
+    // Apaga o LED vermelho
+    digitalWrite(ledVermelho, LOW);
+
+    // Acende o LED verde (siga)
+    digitalWrite(ledVerde, HIGH);
+    // Pisca o LED azul 4 vezes (indicando tempo de espera no verde)
+    for(int i = 0; i < 4; i++){
+        digitalWrite(ledAzul, HIGH);
+        delay(1000);
+        digitalWrite(ledAzul, LOW);
+        delay(1000);
+    }
+    // Apaga o LED verde
+    digitalWrite(ledVerde, LOW);
+
+    // Acende o LED amarelo (atenção)
+    digitalWrite(ledAmarelo, HIGH);
+    // Pisca o LED azul 2 vezes (indicando tempo de espera no amarelo)
+    for(int i = 0; i < 2; i++){
+        digitalWrite(ledAzul, HIGH);
+        delay(1000);
+        digitalWrite(ledAzul, LOW);
+        delay(1000);
+    }
+    // Apaga o LED amarelo
+    digitalWrite(ledAmarelo, LOW);
+}
