@@ -1,0 +1,78 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\Users\USER\DOWNLO~1\2024-2~1\2024-2~3\ICARUS~1\lib\ivl\system.vpi";
+:vpi_module "C:\Users\USER\DOWNLO~1\2024-2~1\2024-2~3\ICARUS~1\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\Users\USER\DOWNLO~1\2024-2~1\2024-2~3\ICARUS~1\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\Users\USER\DOWNLO~1\2024-2~1\2024-2~3\ICARUS~1\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\Users\USER\DOWNLO~1\2024-2~1\2024-2~3\ICARUS~1\lib\ivl\va_math.vpi";
+S_00000239e8f9a3d0 .scope module, "test_f5" "test_f5" 2 45;
+ .timescale 0 0;
+v00000239e8de4c30_0 .net "a", 0 0, L_00000239e8de63d0;  1 drivers
+v00000239e8de4cd0_0 .net "b", 0 0, L_00000239e8e31850;  1 drivers
+v00000239e8de4d70_0 .var "x", 0 0;
+v00000239e8de4e10_0 .var "y", 0 0;
+S_00000239e8de6980 .scope begin, "main" "main" 2 57, 2 57 0, S_00000239e8f9a3d0;
+ .timescale 0 0;
+S_00000239e8de6b10 .scope module, "moduloA" "f5a" 2 51, 2 19 0, S_00000239e8f9a3d0;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "s";
+    .port_info 1 /INPUT 1 "a";
+    .port_info 2 /INPUT 1 "b";
+L_00000239e8f99230 .functor NOT 1, v00000239e8de4d70_0, C4<0>, C4<0>, C4<0>;
+L_00000239e8de63d0 .functor AND 1, L_00000239e8f99230, v00000239e8de4e10_0, C4<1>, C4<1>;
+v00000239e8db3400_0 .net "a", 0 0, v00000239e8de4d70_0;  1 drivers
+v00000239e8db2f80_0 .net "b", 0 0, v00000239e8de4e10_0;  1 drivers
+v00000239e8db31e0_0 .net "not_a", 0 0, L_00000239e8f99230;  1 drivers
+v00000239e8f99190_0 .net "s", 0 0, L_00000239e8de63d0;  alias, 1 drivers
+S_00000239e8de4aa0 .scope module, "moduloB" "f5b" 2 52, 2 38 0, S_00000239e8f9a3d0;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "s";
+    .port_info 1 /INPUT 1 "a";
+    .port_info 2 /INPUT 1 "b";
+L_00000239e8de50f0 .functor NOT 1, v00000239e8de4d70_0, C4<0>, C4<0>, C4<0>;
+L_00000239e8e31850 .functor AND 1, L_00000239e8de50f0, v00000239e8de4e10_0, C4<1>, C4<1>;
+v00000239e8de6ca0_0 .net *"_ivl_0", 0 0, L_00000239e8de50f0;  1 drivers
+v00000239e8de6d40_0 .net "a", 0 0, v00000239e8de4d70_0;  alias, 1 drivers
+v00000239e8f9abf0_0 .net "b", 0 0, v00000239e8de4e10_0;  alias, 1 drivers
+v00000239e8f9ac90_0 .net "s", 0 0, L_00000239e8e31850;  alias, 1 drivers
+    .scope S_00000239e8f9a3d0;
+T_0 ;
+    %fork t_1, S_00000239e8de6980;
+    %jmp t_0;
+    .scope S_00000239e8de6980;
+t_1 ;
+    %vpi_call 2 58 "$display", "Guia_0500 - xxx yyy zzz - 999999" {0 0 0};
+    %vpi_call 2 59 "$display", "Test module" {0 0 0};
+    %vpi_call 2 60 "$display", "   x     y    a    b" {0 0 0};
+    %vpi_call 2 63 "$monitor", "%4b %4b %4b %4b", v00000239e8de4d70_0, v00000239e8de4e10_0, v00000239e8de4c30_0, v00000239e8de4cd0_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000239e8de4d70_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000239e8de4e10_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000239e8de4d70_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000239e8de4e10_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000239e8de4d70_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000239e8de4e10_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000239e8de4d70_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000239e8de4e10_0, 0, 1;
+    %end;
+    .scope S_00000239e8f9a3d0;
+t_0 %join;
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "Exemplo_Verilog_Guia05.v";

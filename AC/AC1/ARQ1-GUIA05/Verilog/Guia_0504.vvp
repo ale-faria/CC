@@ -1,0 +1,68 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\Users\USER\DOWNLO~1\2024-2~1\2024-2~3\ICARUS~1\lib\ivl\system.vpi";
+:vpi_module "C:\Users\USER\DOWNLO~1\2024-2~1\2024-2~3\ICARUS~1\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\Users\USER\DOWNLO~1\2024-2~1\2024-2~3\ICARUS~1\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\Users\USER\DOWNLO~1\2024-2~1\2024-2~3\ICARUS~1\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\Users\USER\DOWNLO~1\2024-2~1\2024-2~3\ICARUS~1\lib\ivl\va_math.vpi";
+S_00000251c4d87da0 .scope module, "test_f8" "test_f8" 2 25;
+ .timescale 0 0;
+v00000251c4dd2fd0_0 .net "a", 0 0, L_00000251c4dd31b0;  1 drivers
+v00000251c4dd3070_0 .var "x", 0 0;
+v00000251c4dd3110_0 .var "y", 0 0;
+S_00000251c4dd6750 .scope begin, "main" "main" 2 35, 2 35 0, S_00000251c4d87da0;
+ .timescale 0 0;
+S_00000251c4dd68e0 .scope module, "moduloA" "nand_f8" 2 31, 2 9 0, S_00000251c4d87da0;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "s";
+    .port_info 1 /INPUT 1 "a";
+    .port_info 2 /INPUT 1 "b";
+L_00000251c4d87f30 .functor NAND 1, v00000251c4dd3070_0, v00000251c4dd3070_0, C4<1>, C4<1>;
+L_00000251c4dd50f0 .functor NAND 1, L_00000251c4d87f30, v00000251c4dd3110_0, C4<1>, C4<1>;
+L_00000251c4dd31b0 .functor NAND 1, L_00000251c4dd50f0, L_00000251c4dd50f0, C4<1>, C4<1>;
+v00000251c4da3400_0 .net "a", 0 0, v00000251c4dd3070_0;  1 drivers
+v00000251c4da2f80_0 .net "b", 0 0, v00000251c4dd3110_0;  1 drivers
+v00000251c4da31e0_0 .net "not_a", 0 0, L_00000251c4d87f30;  1 drivers
+v00000251c4dd6a70_0 .net "not_a_and_b", 0 0, L_00000251c4dd50f0;  1 drivers
+v00000251c4dd6b10_0 .net "s", 0 0, L_00000251c4dd31b0;  alias, 1 drivers
+    .scope S_00000251c4d87da0;
+T_0 ;
+    %fork t_1, S_00000251c4dd6750;
+    %jmp t_0;
+    .scope S_00000251c4dd6750;
+t_1 ;
+    %vpi_call 2 36 "$display", "Guia_0500 - Alessandra Faria Rodrigues - 828333" {0 0 0};
+    %vpi_call 2 37 "$display", "Test module" {0 0 0};
+    %vpi_call 2 38 "$display", "   x     y    a" {0 0 0};
+    %vpi_call 2 41 "$monitor", "%4b %4b %4b", v00000251c4dd3070_0, v00000251c4dd3110_0, v00000251c4dd2fd0_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000251c4dd3070_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000251c4dd3110_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000251c4dd3070_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000251c4dd3110_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000251c4dd3070_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000251c4dd3110_0, 0, 1;
+    %delay 1, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000251c4dd3070_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000251c4dd3110_0, 0, 1;
+    %end;
+    .scope S_00000251c4d87da0;
+t_0 %join;
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "Guia_0504.v";
