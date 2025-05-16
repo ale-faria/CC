@@ -1,0 +1,45 @@
+; Guia_1503.txt
+; Programa para calcular dado05 = dado01 - dado02 + dado03 - dado04 no 8085
+; Usando dados de 8 bits codificados em BCD
+
+ORG 8000H   ; Define o ponto inicial do programa
+
+; Dados
+DADO01: DB 25H   ; dado01 = 25 (em BCD)
+DADO02: DB 13H   ; dado02 = 13 (em BCD)
+DADO03: DB 47H   ; dado03 = 47 (em BCD)
+DADO04: DB 12H   ; dado04 = 12 (em BCD)
+DADO05: DB 00H   ; dado05 (resultado, inicialmente 0)
+
+; Início do programa
+START:   LXI H, DADO01     ; HL aponta para DADO01
+         MOV A, M          ; A = dado01
+
+         ; Subtrair dado02
+         INX H             ; HL aponta para DADO02
+         MOV B, M          ; B = dado02
+         CMA               ; Complementa A (1's complement)
+         INR A             ; A = complemento de 2 do dado02 (LSB)
+         ADD B             ; A = A - dado02
+         DAA               ; Ajusta para BCD
+
+         ; Adicionar dado03
+         INX H             ; HL aponta para DADO03
+         ADD M             ; A = A + dado03
+         DAA               ; Ajusta para BCD
+
+         ; Subtrair dado04
+         INX H             ; HL aponta para DADO04
+         MOV B, M          ; B = dado04
+         CMA               ; Complementa A (1's complement)
+         INR A             ; A = complemento de 2 do dado04
+         ADD B             ; A = A - dado04
+         DAA               ; Ajusta para BCD
+
+         ; Armazenar o resultado em DADO05
+         LXI H, DADO05     ; HL aponta para DADO05
+         MOV M, A          ; Salva o resultado em DADO05
+
+         HLT               ; Fim do programa
+
+END

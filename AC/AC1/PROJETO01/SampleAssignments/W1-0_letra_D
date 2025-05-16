@@ -1,0 +1,21 @@
+; Programa para calcular os 6 primeiros números de Fibonacci
+Start:   load Zero      ; Carrega zero
+         store A        ; Armazena em A (F0)
+         load One       ; Carrega um
+         store B        ; Armazena em B (F1)
+
+FibLoop: load A         ; Carrega F0
+         add B          ; Soma F0 + F1
+         store C        ; Armazena o resultado em C (F2)
+         write          ; Exibe F2
+         load B         ; Carrega F1
+         store A        ; Atualiza F0
+         load C         ; Carrega F2
+         store B        ; Atualiza F1
+         jmp FibLoop    ; Repete até exibir 6 números
+
+Zero:   .data 2 0       ; Zero
+One:    .data 2 1       ; Um
+A: .data 2 0           ; F0
+B: .data 2 0           ; F1
+C: .data 2 0           ; F2

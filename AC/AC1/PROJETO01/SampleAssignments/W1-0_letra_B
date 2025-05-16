@@ -1,0 +1,14 @@
+; Teste de NAND
+Start:   read        ; Lê o primeiro valor para ACC
+         store A     ; Armazena em A
+         read        ; Lê o segundo valor para ACC
+         store B     ; Armazena em B
+
+         load A      ; Carrega A para ACC
+         and B       ; Faz A AND B
+         not         ; Inverte o resultado (faz NAND)
+         write       ; Exibe o resultado de A NAND B
+         stop
+
+A: .data 2 0   ; A
+B: .data 2 0   ; B

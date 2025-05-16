@@ -1,0 +1,90 @@
+; Programa para calcular dado03 = dado01 * dado02 usando somas sucessivas.
+; Dados:
+; dado01 - Primeiro número de 8 bits (endereço 8000h)
+; dado02 - Segundo número de 8 bits (endereço 8001h)
+; dado03 - Resultado de 16 bits (endereços 8002h e 8003h, LSB e MSB)
+
+    ORG 8000H    ; Começa na posição de memória 8000H
+
+; Carrega os valores de dado01 e dado02
+    LXI H, 8000H ; Aponta para o endereço de dado01
+    MOV A, M     ; Carrega dado01 em A
+    MOV B, A     ; Copia dado01 para o registrador B (multiplicando)
+    INX H        ; Incrementa o ponteiro para apontar para dado02
+    MOV A, M     ; Carrega dado02 em A (multiplicador)
+    MOV C, A     ; Copia dado02 para o registrador C
+
+; Inicializa o acumulador para o resultado
+    MVI A, 00H   ; Limpa o acumulador A
+    MOV D, A     ; D será usado para armazenar o MSB do resultado
+    MOV E, A     ; E será usado para armazenar o LSB do resultado
+
+; Loop de multiplicação por somas sucessivas
+MULT_LOOP:
+    CMP C        ; Verifica se o multiplicador (C) é zero
+    JZ DONE      ; Se C == 0, termina o loop
+
+    MOV A, E     ; Carrega o LSB do resultado (E) em A
+    ADD B        ; Soma dado01 (B) ao acumulador
+    MOV E, A     ; Atualiza o LSB do resultado em E
+    JNC SKIP     ; Se não houver carry, pula
+    INX D        ; Incrementa o MSB (D) se houver carry
+
+SKIP:
+    DCR C        ; Decrementa o multiplicador (C)
+    JMP MULT_LOOP; Volta para o início do loop
+
+DONE:
+; Armazena o resultado (16 bits) em 8002H e 8003H
+    LXI H, 8002H ; Aponta para o endereço de dado03
+    MOV M, E     ; Armazena o LSB do resultado em 8002H
+    INX H        ; Incrementa o ponteiro para apontar para 8003H
+    MOV M, D     ; Armazena o MSB do resultado em 8003H
+
+; Finaliza o programa
+    HLT          ; Para a execução
+; Programa para calcular dado03 = dado01 * dado02 usando somas sucessivas.
+; Dados:
+; dado01 - Primeiro número de 8 bits (endereço 8000h)
+; dado02 - Segundo número de 8 bits (endereço 8001h)
+; dado03 - Resultado de 16 bits (endereços 8002h e 8003h, LSB e MSB)
+
+    ORG 8000H    ; Começa na posição de memória 8000H
+
+; Carrega os valores de dado01 e dado02
+    LXI H, 8000H ; Aponta para o endereço de dado01
+    MOV A, M     ; Carrega dado01 em A
+    MOV B, A     ; Copia dado01 para o registrador B (multiplicando)
+    INX H        ; Incrementa o ponteiro para apontar para dado02
+    MOV A, M     ; Carrega dado02 em A (multiplicador)
+    MOV C, A     ; Copia dado02 para o registrador C
+
+; Inicializa o acumulador para o resultado
+    MVI A, 00H   ; Limpa o acumulador A
+    MOV D, A     ; D será usado para armazenar o MSB do resultado
+    MOV E, A     ; E será usado para armazenar o LSB do resultado
+
+; Loop de multiplicação por somas sucessivas
+MULT_LOOP:
+    CMP C        ; Verifica se o multiplicador (C) é zero
+    JZ DONE      ; Se C == 0, termina o loop
+
+    MOV A, E     ; Carrega o LSB do resultado (E) em A
+    ADD B        ; Soma dado01 (B) ao acumulador
+    MOV E, A     ; Atualiza o LSB do resultado em E
+    JNC SKIP     ; Se não houver carry, pula
+    INX D        ; Incrementa o MSB (D) se houver carry
+
+SKIP:
+    DCR C        ; Decrementa o multiplicador (C)
+    JMP MULT_LOOP; Volta para o início do loop
+
+DONE:
+; Armazena o resultado (16 bits) em 8002H e 8003H
+    LXI H, 8002H ; Aponta para o endereço de dado03
+    MOV M, E     ; Armazena o LSB do resultado em 8002H
+    INX H        ; Incrementa o ponteiro para apontar para 8003H
+    MOV M, D     ; Armazena o MSB do resultado em 8003H
+
+; Finaliza o programa
+    HLT          ; Para a execução

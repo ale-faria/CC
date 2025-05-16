@@ -1,0 +1,33 @@
+//Guia_0900.v
+
+// ---------------------------
+// -- test clock generator (1)
+// ---------------------------
+
+module clock (output clk);  // Módulo gerador de clock
+    reg clk;                // Registrador para armazenar o estado do clock
+    initial
+    begin
+        clk = 1'b0;         // Clock inicializa em nível lógico baixo
+    end
+    always
+    begin
+        #12 clk = ~clk;     // Inverte o estado do clock a cada 12 unidades de tempo
+    end
+endmodule // clock
+
+module Guia_0900;
+    wire clk;               // Fio para conectar o sinal do clock gerado
+    clock CLK1 (clk);       // Instância do módulo gerador de clock
+
+    initial begin
+        $dumpfile("Guia_0900.vcd"); // Arquivo de saída para simulação
+        $dumpvars;                  // Habilita variáveis para registro de simulação
+        #120 $finish;               // Finaliza a simulação após 120 unidades de tempo
+    end
+endmodule // Guia_0900
+
+
+//iverilog -o Guia_0900 Guia_0900.v
+//vvp Guia_0900
+//gtkwave Guia_0900.vcd

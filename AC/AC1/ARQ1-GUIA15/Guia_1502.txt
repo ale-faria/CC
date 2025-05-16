@@ -1,0 +1,75 @@
+; Guia_1502.txt
+; Programa para calcular dado05 = dado01 + dado02 + dado03 - dado04 no 8085
+
+ORG 8000H   ; Define o ponto inicial do programa
+
+; Dados de 16 bits (cada dado ocupa 2 bytes: LSB e MSB)
+DADO01: DW 1234H   ; dado01 = 0x1234 (4660 em decimal, exemplo)
+DADO02: DW 0ABCH   ; dado02 = 0x0ABC (2748 em decimal, exemplo)
+DADO03: DW 0F10H   ; dado03 = 0x0F10 (3856 em decimal, exemplo)
+DADO04: DW 0345H   ; dado04 = 0x0345 (837 em decimal, exemplo)
+DADO05: DW 0000H   ; dado05 (resultado, inicialmente 0)
+
+; Início do programa
+START:   LXI H, DADO01     ; HL aponta para DADO01
+         MOV A, M          ; A = LSB de dado01
+         INX H             ; HL aponta para MSB de dado01
+         MOV H, M          ; H = MSB de dado01
+         MOV L, A          ; HL = dado01 (16 bits)
+
+         ; Adicionar dado02
+         LXI D, DADO02     ; DE aponta para DADO02
+         MOV A, M          ; A = LSB de dado02
+         ADD L             ; Adiciona LSB
+         MOV L, A          ; Armazena LSB no resultado parcial
+         INX D             ; DE aponta para MSB de dado02
+         MOV A, M          ; A = MSB de dado02
+         ADC H             ; Soma MSB com carry
+         MOV H, A          ; Armazena MSB no resultado parcial
+
+         ; Adicionar dado03
+         LXI D, DADO03     ; DE aponta para DADO03
+         MOV A, M          ; A = LSB de dado03
+         ADD L             ; Adiciona LSB
+         MOV L, A          ; Armazena LSB no resultado parcial
+         INX D             ; DE aponta para MSB de dado03
+         MOV A, M          ; A = MSB de dado03
+         ADC H             ; Soma MSB com carry
+         MOV H, A          ; Armazena MSB no resultado parcial
+
+         ; Subtrair dado04 (usar complemento de 2)
+         LXI D, DADO04     ; DE aponta para DADO04
+         MOV A, M          ; A = LSB de dado04
+         CMA               ; Complementa A (1's complement)
+         MOV E, A          ; Armazena complemento em E
+         INX D             ; DE aponta para MSB de dado04
+         MOV A, M          ; A = MSB de dado04
+         CMA               ; Complementa A (1's complement)
+         MOV D, A          ; Armazena complemento em D
+
+         ; Adicionar 1 ao complemento (formando o complemento de 2)
+         LXI B, 0001H      ; Carrega 1 no registrador BC
+         MOV A, E          ; A = LSB do complemento de dado04
+         ADD C             ; Adiciona carry (1) ao LSB
+         MOV E, A          ; Salva o LSB atualizado
+         MOV A, D          ; A = MSB do complemento de dado04
+         ADC B             ; Adiciona carry ao MSB
+         MOV D, A          ; Salva o MSB atualizado
+
+         ; Subtrair dado04 (na verdade, somar o complemento de 2)
+         MOV A, L          ; A = LSB do acumulador parcial
+         ADD E             ; Soma LSB de dado04 (em complemento)
+         MOV L, A          ; Atualiza LSB no resultado parcial
+         MOV A, H          ; A = MSB do acumulador parcial
+         ADC D             ; Soma MSB de dado04 (em complemento)
+         MOV H, A          ; Atualiza MSB no resultado parcial
+
+         ; Armazenar o resultado em DADO05
+         LXI D, DADO05     ; DE aponta para DADO05
+         MOV M, L          ; Salva LSB do resultado
+         INX D             ; DE aponta para MSB de DADO05
+         MOV M, H          ; Salva MSB do resultado
+
+         HLT               ; Fim do programa
+
+END

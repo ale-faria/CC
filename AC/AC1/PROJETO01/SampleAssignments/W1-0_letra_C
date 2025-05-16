@@ -1,0 +1,28 @@
+; Program to compute XOR using NAND
+Start:   read        ; Lê o primeiro valor para ACC
+         store A     ; Armazena em A
+         read        ; Lê o segundo valor para ACC
+         store B     ; Armazena em B
+
+         load A      ; Carrega A
+         nand B      ; Faz A NAND B
+         store C     ; Armazena em C
+
+         load A      ; Carrega A
+         nand C      ; Faz A NAND (A NAND B)
+         store D     ; Armazena em D
+
+         load B      ; Carrega B
+         nand C      ; Faz B NAND (A NAND B)
+         store E     ; Armazena em E
+
+         load D      ; Carrega D
+         nand E      ; Faz (A NAND (A NAND B)) NAND (B NAND (A NAND B))
+         write       ; Exibe o resultado
+         stop
+
+A: .data 2 0   ; A
+B: .data 2 0   ; B
+C: .data 2 0   ; Intermediário
+D: .data 2 0   ; Intermediário
+E: .data 2 0   ; Intermediário

@@ -1,0 +1,49 @@
+; Programa para encontrar o maior valor em um arranjo de 8 bits.
+; Dados:
+; arranjo - Vetor de dados (endereços 8000h a 800Nh)
+; dado01 - Maior valor encontrado (endereço 8100h)
+; N - Número de elementos do arranjo (em memória, podemos armazenar N em 8101h)
+
+    ORG 8000H      ; Início do arranjo no endereço 8000h
+
+; Defina o arranjo com N elementos (de 00h a 0Fh por exemplo)
+    DB 10H, 15H, 04H, 23H, 05H, 09H, 08H, 19H  ; Exemplo de 8 elementos (pode ser ajustado)
+    ; Continuar com o arranjo, de acordo com o número de elementos desejado
+
+; Finaliza o arranjo com N (quantidade de elementos)
+    MVI 8101H, 08H  ; Número de elementos no arranjo (8 elementos neste exemplo)
+
+    ORG 8100H      ; Endereço onde o maior valor será armazenado
+
+; Inicializa o maior valor encontrado (primeiro elemento do arranjo)
+    MVI A, 00H      ; Inicializa A com 0, será usado para armazenar o maior valor
+    MOV B, A        ; Copia A para B (o maior valor encontrado)
+    
+; Aponta para o início do arranjo
+    LXI H, 8000H    ; Aponta H para o início do arranjo
+    MOV C, M        ; Carrega o primeiro valor do arranjo (M) em C
+    MOV B, C        ; Inicializa B com o primeiro valor do arranjo
+
+; Inicializa o contador de iterações
+    MVI D, 01H      ; Começa a contar a partir do segundo elemento (já comparado com o primeiro)
+
+FIND_MAX_LOOP:
+    LXI H, 8000H    ; Aponta para o endereço do arranjo
+    MOV A, M        ; Carrega o próximo valor do arranjo (M) em A
+    MOV C, A        ; Compara com o maior valor encontrado (B)
+    CMP B           ; Compara A com B (maior valor)
+    JC CONTINUE     ; Se A < B, continua
+
+    MOV B, A        ; Se A > B, atualiza B com o novo maior valor encontrado
+
+CONTINUE:
+    INX H           ; Avança para o próximo elemento do arranjo
+    DCR D           ; Decrementa o contador
+    JNZ FIND_MAX_LOOP ; Continua enquanto houver elementos
+
+; Armazena o maior valor encontrado em dado01 (8100h)
+    LXI H, 8100H    ; Aponta para o endereço de dado01
+    MOV M, B        ; Armazena o maior valor (B) em 8100h
+
+; Finaliza o programa
+    HLT             ; Termina a execução

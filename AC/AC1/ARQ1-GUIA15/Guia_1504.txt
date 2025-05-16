@@ -1,0 +1,29 @@
+; Guia_1504.txt
+; Programa para calcular dado03 = 2 * (dado01 - 2 * dado02) no 8085
+; Usando dados de 8 bits
+
+ORG 8000H   ; Define o ponto inicial do programa
+
+; Dados
+DADO01: DB 0AH   ; dado01 = 10 (exemplo)
+DADO02: DB 03H   ; dado02 = 3 (exemplo)
+DADO03: DB 00H   ; dado03 (resultado, inicialmente 0)
+
+; Início do programa
+START:   LXI H, DADO02     ; HL aponta para DADO02
+         MOV A, M          ; A = dado02
+         ADD A             ; A = 2 * dado02 (dobro do dado02)
+         MOV B, A          ; Salva o resultado (2 * dado02) no registrador B
+
+         LXI H, DADO01     ; HL aponta para DADO01
+         MOV A, M          ; A = dado01
+         SUB B             ; A = dado01 - (2 * dado02)
+         MOV B, A          ; Salva o resultado parcial em B
+
+         ADD A             ; A = 2 * (dado01 - 2 * dado02)
+         LXI H, DADO03     ; HL aponta para DADO03
+         MOV M, A          ; Armazena o resultado em DADO03
+
+         HLT               ; Fim do programa
+
+END

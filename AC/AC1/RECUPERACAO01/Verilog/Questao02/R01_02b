@@ -1,0 +1,24 @@
+//R01_02b
+//mux (c, not(c), mux(a,not(a),b))
+
+module complex_mux(
+  input wire a,
+  input wire b,
+  input wire c,
+  output wire y
+);
+  wire not_a;
+  wire not_c;
+  wire mux_inner;
+
+  // Calcular not(a) e not(c)
+  not (not_a, a);
+  not (not_c, c);
+
+  // Multiplexador interno usando b como seleção
+  assign mux_inner = (b) ? not_a : a;
+
+  // Multiplexador externo usando mux_inner como seleção
+  assign y = (mux_inner) ? not_c : c;
+
+endmodule

@@ -1,0 +1,27 @@
+; Guia_1501.txt
+; Programa para calcular dado04 = dado01 + dado02 - dado03 no 8085
+
+ORG 8000H   ; Define o ponto inicial do programa
+
+; Dados
+DADO01: DB 10H  ; dado01 = 16 (exemplo)
+DADO02: DB 20H  ; dado02 = 32 (exemplo)
+DADO03: DB 05H  ; dado03 = 5  (exemplo)
+DADO04: DB 00H  ; dado04 (resultado)
+
+; Início do programa
+START:   LXI H, DADO01   ; HL aponta para DADO01
+         MOV A, M        ; A = dado01
+
+         INX H           ; HL aponta para DADO02
+         ADD M           ; A = A + dado02
+
+         INX H           ; HL aponta para DADO03
+         SUB M           ; A = A - dado03
+
+         INX H           ; HL aponta para DADO04
+         MOV M, A        ; Salva o resultado em DADO04
+
+         HLT             ; Fim do programa
+
+END

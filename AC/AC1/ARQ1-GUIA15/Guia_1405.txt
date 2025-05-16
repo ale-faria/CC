@@ -1,0 +1,40 @@
+; Guia_1505.txt
+; Programa para calcular dado03 = dado01 * 8 + dado02 / 2 no 8085
+; Usando dados de 8 bits e operações de soma para multiplicação e comparações para divisão
+
+ORG 8000H   ; Define o ponto inicial do programa
+
+; Dados
+DADO01: DB 05H   ; dado01 = 5 (exemplo)
+DADO02: DB 10H   ; dado02 = 16 (exemplo)
+DADO03: DB 00H   ; dado03 (resultado, inicialmente 0)
+
+; Início do programa
+START:   LXI H, DADO01     ; HL aponta para DADO01
+         MOV A, M          ; A = dado01
+         
+         ; Calcular dado01 * 8 (usando somas repetidas)
+         MOV B, A          ; Salva dado01 em B
+         ADD A             ; A = dado01 * 2
+         ADD A             ; A = dado01 * 4
+         ADD A             ; A = dado01 * 8
+         MOV C, A          ; Armazena dado01 * 8 no registrador C
+
+         ; Calcular dado02 / 2
+         LXI H, DADO02     ; HL aponta para DADO02
+         MOV A, M          ; A = dado02
+         RAR               ; Realiza a divisão por 2 (rota à direita com sinal)
+         ANI 7FH           ; Limpa o bit de sinal (para trabalhar com valores positivos)
+         MOV B, A          ; Armazena dado02 / 2 no registrador B
+
+         ; Somar os dois resultados
+         MOV A, C          ; A = dado01 * 8
+         ADD B             ; A = dado01 * 8 + dado02 / 2
+
+         ; Armazenar o resultado em DADO03
+         LXI H, DADO03     ; HL aponta para DADO03
+         MOV M, A          ; Salva o resultado em DADO03
+
+         HLT               ; Fim do programa
+
+END

@@ -1,0 +1,52 @@
+; Programa para calcular dado03 = dado01 / dado02 usando subtrações sucessivas.
+; Dados:
+; dado01 - Dividendo (endereço 8000h)
+; dado02 - Divisor (endereço 8001h)
+; dado03 - Quociente (endereço 8002h)
+; dado04 - Resto (opcional, endereço 8003h)
+
+    ORG 8000H      ; Início do programa na posição de memória 8000h
+
+; Carrega os valores do dividendo (dado01) e divisor (dado02)
+    LXI H, 8000H   ; Aponta para o endereço do dividendo
+    MOV A, M       ; Carrega dado01 em A (dividendo)
+    MOV D, A       ; Copia dado01 para o registrador D (acumulador do dividendo)
+    INX H          ; Incrementa o ponteiro para o divisor
+    MOV A, M       ; Carrega dado02 em A (divisor)
+    MOV E, A       ; Copia dado02 para o registrador E
+
+; Verifica se o divisor é zero
+    CPI 00H        ; Compara divisor com 0
+    JZ DIV_BY_ZERO ; Se divisor for 0, vai para o tratamento de erro
+
+; Inicializa o quociente e o resto
+    MVI B, 00H     ; Configura o quociente (B) como 0
+    MVI C, 00H     ; Configura o resto temporário (C) como 0
+
+; Loop de divisão por subtrações sucessivas
+DIV_LOOP:
+    MOV A, D       ; Carrega o dividendo restante (D) em A
+    CMP E          ; Compara o dividendo restante com o divisor (E)
+    JC DONE        ; Se D < E, sai do loop (não pode mais subtrair)
+
+    SUB E          ; Subtrai o divisor do dividendo restante
+    MOV D, A       ; Atualiza o dividendo restante em D
+    INR B          ; Incrementa o quociente (B)
+    JMP DIV_LOOP   ; Repete o processo
+
+DONE:
+; Armazena o quociente e o resto na memória
+    LXI H, 8002H   ; Aponta para o endereço do quociente
+    MOV M, B       ; Armazena o quociente em 8002h
+    INX H          ; Incrementa o ponteiro para o endereço do resto
+    MOV M, D       ; Armazena o resto em 8003h
+
+; Finaliza o programa
+    HLT            ; Termina a execução
+
+DIV_BY_ZERO:
+; Tratamento de divisão por zero (opcional)
+    MVI A, FFH     ; Usa FFh como código de erro para divisão por zero
+    LXI H, 8002H   ; Aponta para o endereço do quociente
+    MOV M, A       ; Armazena o código de erro no endereço 8002h
+    HLT            ; Termina a execução

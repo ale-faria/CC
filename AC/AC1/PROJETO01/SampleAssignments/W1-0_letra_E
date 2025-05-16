@@ -1,0 +1,24 @@
+; Programa para calcular o quadrado de N usando soma de ímpares
+Start:   read        ; Lê N para o acumulador (ACC)
+         store N     ; Armazena N
+         load Zero   ; Carrega zero
+         store Sum   ; Armazena o valor inicial da soma
+
+OddNum:  load Sum   ; Carrega a soma
+         add Odd    ; Soma o número ímpar
+         store Sum  ; Atualiza a soma
+         load Odd   ; Carrega o número ímpar
+         add Two    ; Incrementa 2 (próximo número ímpar)
+         store Odd  ; Atualiza o número ímpar
+         load N     ; Carrega N
+         subtract One  ; Decrementa N
+         store N    ; Atualiza N
+         jmpnz OddNum ; Continua até N ser zero
+
+         write      ; Exibe o resultado (quadrado)
+         stop
+
+N: .data 2 0        ; N
+Sum: .data 2 0      ; Soma
+Odd: .data 2 1      ; Número ímpar (inicia em 1)
+Two: .data 2 2      ; Dois

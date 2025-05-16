@@ -1,0 +1,10 @@
+; Programa para testar a instrução NOT
+Start:   read        ; Lê um valor para o acumulador (ACC)
+         jmpz    TrueCase ; Se ACC for zero (false), vai para o TrueCase
+         not         ; Se ACC for true (1), faz NOT (inverte para false)
+         write        ; Exibe o valor (agora será false)
+         stop
+
+TrueCase:  not         ; Se ACC for false (0), faz NOT (inverte para true)
+           write       ; Exibe o valor (agora será true)
+           stop
