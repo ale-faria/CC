@@ -1,0 +1,14 @@
+README.md
+setup.py
+minha_arvore/__init__.py
+minha_arvore/c45.py
+minha_arvore/cart.py
+minha_arvore/funcoes.py
+minha_arvore/id3.py
+minha_arvore/no.py
+minha_arvore/util.py
+minha_arvore.egg-info/PKG-INFO
+minha_arvore.egg-info/SOURCES.txt
+minha_arvore.egg-info/dependency_links.txt
+minha_arvore.egg-info/requires.txt
+minha_arvore.egg-info/top_level.txt
