@@ -114,9 +114,52 @@ class PuzzleApp:
 
     def shuffle_board(self):
         """
-        Embaralha fazendo movimentos válidos a partir do objetivo.
-        Isso garante que o puzzle gerado seja sempre solucionável.
+        Embaralha o tabuleiro. 
+        Se houver uma Seed, o embaralhamento é reproduzível (para testes).
+        Se não, é aleatório.
         """
+        seed_value = self.seed_entry.get()
+        
+        if seed_value.strip(): # Se o campo não estiver vazio
+            try:
+                # Fixa a aleatoriedade com o número digitado
+                random.seed(int(seed_value))
+                print(f"Usando Seed fixa: {seed_value}") # Para debug
+            except ValueError:
+                messagebox.showwarning("Aviso", "A Seed deve ser um número inteiro!")
+                return
+        else:
+            # Garante aleatoriedade total (limpa qualquer seed anterior)
+            random.seed(None)
+            print("Usando aleatoriedade normal")
+
+        # Lógica de embaralhamento (Idêntica à anterior)
+        state = PuzzleState(self.goal_board) 
+        
+        # Dica: Para testes consistentes, mantenha o número de movimentos fixo também
+        moves = 30 
+        
+        for _ in range(moves):
+            successors = state.get_successors()
+            # O random.choice agora obedecerá a seed configurada acima
+            state = random.choice(successors)
+        
+        self.current_state = state
+        self.draw_board(self.current_state.board)
+        
+        # Reset visual
+        self.stats_label.config(text="Tabuleiro Embaralhado!\nPronto para resolver.")
+        
+        # IMPORTANTE: Voltar a seed para None para não afetar outras partes do programa
+        # (caso você adicione outras funcionalidades aleatórias no futuro)
+        if seed_value.strip():
+            random.seed(None)
+    """
+    def shuffle_board(self):
+        
+        #Embaralha fazendo movimentos válidos a partir do objetivo.
+        #Isso garante que o puzzle gerado seja sempre solucionável.
+        
         state = PuzzleState(self.goal_board) # Começa do resolvido
         
         # 30 a 50 movimentos aleatórios é suficiente para ficar difícil
@@ -130,7 +173,7 @@ class PuzzleApp:
         self.current_state = state
         self.draw_board(self.current_state.board)
         self.stats_label.config(text="Tabuleiro Embaralhado!\nPronto para resolver.")
-
+    """
     def start_solving(self):
         """Inicia a thread de resolução para não travar a interface"""
         self.btn_solve.config(state="disabled", text="Calculando...")
