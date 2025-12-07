@@ -50,16 +50,13 @@ class Solver:
         return {"success": False}
 
     def greedy(self, initial_state, heuristic_func):
-        """Busca Gulosa (Greedy Best-First Search)"""
+        """Busca Gulosa (Greedy Search)"""
         # Na Gulosa, f(n) = h(n). Ignoramos o custo g(n).
         start_time = time.time()
         
         # Calcula heurística inicial
         initial_state.heuristic = heuristic_func(initial_state.board)
         
-        # Fila de prioridade: armazena estados ordenados pelo f(n)
-        # Nota: definimos __lt__ na classe PuzzleState para comparar f(n)
-        # Mas para garantir comportamento guloso, zeramos o custo na comparação implícita
         initial_state.cost = 0 
         
         priority_queue = []
@@ -127,8 +124,6 @@ class Solver:
                 # Calcula a heurística para o filho
                 child.heuristic = heuristic_func(child.board)
                 
-                # Verifica se já visitamos este estado com um custo menor ou igual
-                # (Simplificação: apenas verificamos se já foi visitado para evitar loops)
                 if child not in visited:
                     visited.add(child)
                     heapq.heappush(priority_queue, child)

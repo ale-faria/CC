@@ -6,9 +6,9 @@ class PuzzleState:
         # board é uma lista de listas, ex: [[1, 2, 3, 4], [5, 6, 7, 8], ...]
         # 0 representa o espaço vazio
         self.board = board
-        self.parent = parent  # Para reconstruir o caminho [cite: 25]
+        self.parent = parent  # Para reconstruir o caminho 
         self.move = move      # Qual movimento levou a este estado
-        self.depth = depth    # Profundidade da solução [cite: 24]
+        self.depth = depth    # Profundidade da solução 
         self.cost = cost      # Custo acumulado (g(n))
         self.heuristic = 0    # Heurística (h(n))
         

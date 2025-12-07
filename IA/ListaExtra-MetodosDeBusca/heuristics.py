@@ -31,7 +31,7 @@ class Heuristics:
         for r in range(4):
             for c in range(4):
                 value = board[r][c]
-                if value != 0:  # Geralmente não contamos o espaço vazio
+                if value != 0:  
                     goal_r, goal_c = Heuristics.get_goal_position(value)
                     if (r, c) != (goal_r, goal_c):
                         count += 1
@@ -42,7 +42,6 @@ class Heuristics:
         """
         Heurística 2: Distância de Manhattan.
         Soma das distâncias verticais e horizontais de cada peça até seu objetivo.
-        É considerada a melhor heurística padrão para este jogo.
         """
         distance = 0
         for r in range(4):

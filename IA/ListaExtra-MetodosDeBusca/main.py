@@ -48,18 +48,11 @@ class PuzzleApp:
         self.seed_entry = tk.Entry(controls_frame)
         self.seed_entry.pack(pady=5)
 
-        # Botão Embaralhar (Mantenha o botão, mas ele usará a seed agora)
+        # Botão Embaralhar
         self.btn_shuffle = tk.Button(controls_frame, text="Embaralhar", 
                                      bg="#95A5A6", fg="black", font=("Arial", 10, "bold"),
                                      command=self.shuffle_board)
         self.btn_shuffle.pack(fill="x", pady=5)
-
-        # Botão Embaralhar
-        #tk.Label(controls_frame, text="Configuração:", font=("Arial", 10, "bold"), bg="#2C3E50", fg="white").pack(pady=(0, 5))
-        #self.btn_shuffle = tk.Button(controls_frame, text="Embaralhar (Gerar Novo Jogo)", bg="#B0C2C4", command=self.shuffle_board)
-        #self.btn_shuffle.pack(fill="x", pady=5)
-
-        #tk.Frame(controls_frame, height=10).pack() # Espaçador
 
         # Seleção de Algoritmo
         tk.Label(controls_frame, text="Algoritmo de Busca:", font=("Arial", 10, "bold"), bg="#2C3E50", fg="white").pack(pady=(0, 5))
@@ -124,7 +117,7 @@ class PuzzleApp:
             try:
                 # Fixa a aleatoriedade com o número digitado
                 random.seed(int(seed_value))
-                print(f"Usando Seed fixa: {seed_value}") # Para debug
+                print(f"Usando Seed fixa: {seed_value}") 
             except ValueError:
                 messagebox.showwarning("Aviso", "A Seed deve ser um número inteiro!")
                 return
@@ -133,10 +126,9 @@ class PuzzleApp:
             random.seed(None)
             print("Usando aleatoriedade normal")
 
-        # Lógica de embaralhamento (Idêntica à anterior)
+        # Lógica de embaralhamento 
         state = PuzzleState(self.goal_board) 
         
-        # Dica: Para testes consistentes, mantenha o número de movimentos fixo também
         moves = 30 
         
         for _ in range(moves):
@@ -150,30 +142,9 @@ class PuzzleApp:
         # Reset visual
         self.stats_label.config(text="Tabuleiro Embaralhado!\nPronto para resolver.")
         
-        # IMPORTANTE: Voltar a seed para None para não afetar outras partes do programa
-        # (caso você adicione outras funcionalidades aleatórias no futuro)
         if seed_value.strip():
             random.seed(None)
-    """
-    def shuffle_board(self):
-        
-        #Embaralha fazendo movimentos válidos a partir do objetivo.
-        #Isso garante que o puzzle gerado seja sempre solucionável.
-        
-        state = PuzzleState(self.goal_board) # Começa do resolvido
-        
-        # 30 a 50 movimentos aleatórios é suficiente para ficar difícil
-        # CUIDADO: Se usar BFS, não embaralhe muito (ex: 10 a 15), ou a RAM vai estourar!
-        moves = 30 
-        
-        for _ in range(moves):
-            successors = state.get_successors()
-            state = random.choice(successors)
-        
-        self.current_state = state
-        self.draw_board(self.current_state.board)
-        self.stats_label.config(text="Tabuleiro Embaralhado!\nPronto para resolver.")
-    """
+    
     def start_solving(self):
         """Inicia a thread de resolução para não travar a interface"""
         self.btn_solve.config(state="disabled", text="Calculando...")
